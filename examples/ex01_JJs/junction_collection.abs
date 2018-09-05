@@ -1,0 +1,212 @@
+* Absynth layout file
+* Describes layout of a series of Josephson junctions as example
+* v1
+* CJF 30 Nov 2017: first implementation
+******************************************************************************
+*
+$Parameters
+* Global parameters, where necessary
+* Units = REAL // Unit size in metres
+*------------------------------------
+Units             =  1e-6
+ProcessFile       =  "MITLL.PRD"
+GDSOutFile        =  "junction_collection.gds"
+StructName        =  "junctions"
+Include           =  "devices.abs"
+$End
+***********************************
+  // Variable definitions - used for parameterization
+
+$VARIABLE
+  name = p           //  Pitch between JJs
+  value = 10
+$END
+
+$VARIABLE
+  name = rshunt           //  Shunt resistance for 100 uA junction
+  value = 6.86
+$END
+
+  // Unshunted junctions
+
+$DEVICE
+  definition  =   jj1
+  parameters  = {
+  icrit = 50E-6
+  }
+  xy={
+    0, 0
+  }
+  rotate = 0
+$END
+  
+$DEVICE
+  definition  =   jj1
+  parameters  = {
+  icrit = 100E-6
+  }
+  xy={
+    %p, 0
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1
+  parameters  = {
+  icrit = 150E-6
+  }
+  xy={
+    2*%p, 0
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1
+  parameters  = {
+  icrit = 250E-6
+  }
+  xy={
+    3*%p, 0
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1
+  parameters  = {
+  icrit = 250E-6
+  }
+  xy={
+    4*%p, 0
+  }
+  rotate = 0
+$END
+
+// Shunted junctions
+
+$DEVICE
+  definition  =   jj1shunted
+  parameters  = {
+  icrit = 50E-6
+  rs = %rshunt*100E-6/50E-6
+  }
+  xy={
+    0, 5
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1shunted
+  parameters  = {
+  icrit = 100E-6
+  rs = %rshunt*100E-6/100E-6
+  }
+  xy={
+    %p, 5
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1shunted
+  parameters  = {
+  icrit = 150E-6
+  rs = %rshunt*100E-6/150E-6
+  }
+  xy={
+    %p*2, 5
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1shunted
+  parameters  = {
+  icrit = 200E-6
+  rs = %rshunt*100E-6/200E-6
+  }
+  xy={
+    %p*3, 5
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1shunted
+  parameters  = {
+  icrit = 250E-6
+  rs = %rshunt*100E-6/250E-6
+  }
+  xy={
+    %p*4, 5
+  }
+  rotate = 0
+$END
+
+// Shunted, grounded and rotated junctions
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 50E-6
+  rs = %rshunt*100E-6/50E-6
+  }
+  xy={
+    0, 20
+  }
+  rotate = 0
+$END
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 100E-6
+  rs = %rshunt*100E-6/100E-6
+  }
+  xy={
+    %p, 20
+  }
+  rotate = 270
+$END
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 150E-6
+  rs = %rshunt*100E-6/150E-6
+  }
+  xy={
+    %p*2, 20
+  }
+  rotate = 180
+$END
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 200E-6
+  rs = %rshunt*100E-6/200E-6
+  }
+  xy={
+    %p*3, 20
+  }
+  rotate = 90
+$END
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 250E-6
+  rs = %rshunt*100E-6/250E-6
+  }
+  xy={
+    %p*4, 20
+  }
+  rotate = 45
+$END
+
+
+$EOF

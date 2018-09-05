@@ -1,0 +1,96 @@
+* Absynth layout file
+* Describes layout of a parameterized SPLITTER-T
+* v1
+* CJF 28 Nov 2017: first implementation
+******************************************************************************
+*
+$Parameters
+* Global parameters, where necessary
+* Units = REAL // Unit size in metres
+*------------------------------------
+Units             =  1e-6
+ProcessFile       =  "MITLL.PRD"
+GDSOutFile        =  "splitter-t.gds"
+StructName        =  "splitter-t"
+Include           =  "devices.abs"
+$End
+***********************************
+  // Variable definitions - used for parameterization
+$VARIABLE
+  name = scale
+  value = 1.0
+$END
+
+$VARIABLE
+  name = vbias
+  value = 2.5E-3
+$END
+
+$VARIABLE
+  name = tp          //  Track pitch
+  value = 10         //  Track pitch is not yet parameterized. Requires investigation into minimum via size
+$END
+
+$VARIABLE
+  name = w           //  Width of cell layout
+  value = 3*%tp
+$END
+
+$VARIABLE
+  name = h           //  Height of cell layout
+  value = 5*%tp
+$END
+  // Circuit layout
+$DEVICE
+  definition  =   jj1shunted
+  name = b0
+  parameters  = {
+  icrit = 250E-6*%scale
+  rs = 2
+  }
+  xy={
+    %w/8, %h/2
+  }
+  rotate = 0
+$END
+
+$DEVICE
+definition  =   jj1shuntground
+parameters  = {
+  icrit = 125E-6*%scale
+  rs = 4.0
+}
+xy={
+  %w-%w/8, %h/2
+}
+rotate = 90
+$END
+$DEVICE
+definition  =   jj1shunted
+parameters  = {
+  icrit = 50E-6*%scale
+  rs = 10
+}
+xy={
+  %w/2, %h/4
+}
+rotate = 270
+$END
+$BLOCK
+layer=70
+xy={
+   10 , 10
+   30 , 20
+   }
+$END
+$PATH
+layer=20
+width=2
+xy={
+  -10 , -10
+  -10 , 0
+  10 , 0
+  10 , -5
+  }
+$END
+$EOF

@@ -1,0 +1,1 @@
+..\..\bin\Win64\Release\absynth -a junction_collection.abs

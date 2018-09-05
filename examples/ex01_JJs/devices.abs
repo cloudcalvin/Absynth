@@ -1,0 +1,150 @@
+* Absynth device layout file
+* v1
+* CJF 30 Nov 2017: first implementation
+******************************************************************************
+*
+$Parameters
+* Global parameters, where necessary
+* Units = REAL // Unit size in metres
+*------------------------------------
+Units             =  1e-6
+Process           =  "MITLL.PRD"
+$End
+***********************************
+$JJ
+name = jj1
+parameters = {
+  icrit        // Specified in Ampere (real value)
+}
+// For a JJ, the area is calculated from parameter "icrit" and the JC of the JJ layer.
+// a base and counter electrode each need to be specified - used later with InductEx
+// All other objects specified as "object", and these can be on any layer. (Vias through multiple
+// isolation and/or anodization layers thus possible. All objects can have parameterized coordinates,
+// with only one variable calculated from the area: the radius of the JJ circle.
+// Offset always refers to the offset of a dimension from the value calculated for JJ active layer radius.
+base = {
+  layer = 50
+  offset = 0.5
+  shape = circle
+  circlepoints = 32
+ }
+counter = {
+  layer = 60
+  offset = 0.35
+  shape = circle
+  circlepoints = 32
+ }
+jj = {
+  layer = 51
+*    Object types:  mcircle (Manhattan circle), circle, poly
+  offset = 0
+  shape = mcircle
+  xy = {
+    0, 0
+  }
+}
+object = {
+  layer = 55
+  offset = -0.1
+  shape = circle
+  circlepoints = 32
+}
+$END
+
+$JJ
+name = jj1shunted
+parameters = {
+  icrit        // Specified in Ampere (real value)
+  Rs           // Shunt resistance in ohms
+}
+// For a JJ, the area is calculated from parameter "icrit" and the JC of the JJ layer.
+// a base and counter electrode each need to be specified - used later with InductEx
+// All other objects specified as "object", and these can be on any layer. (Vias through multiple
+// isolation and/or anodization layers thus possible. All objects can have parameterized coordinates,
+// with only one variable calculated from the area: the radius of the JJ circle.
+// Offset always refers to the offset of a dimension from the value calculated for JJ active layer radius.
+
+rslayer = 52
+jjvialayer = 55
+rsvialayer = 56
+counterbasevialayer = 54
+ISGrounded = false
+LowerGroundLayer = 40
+LowerGroundViaLayer = 41
+
+base = {
+  layer = 50
+  offset = 0.5
+  shape = rectangle
+  circlepoints = 10
+ }
+counter = {
+  layer = 60
+  offset = 1.0
+  shape = rectangle
+  circlepoints = 8
+ }
+jj = {
+  layer = 51
+*    Object types:  mcircle (Manhattan circle), circle, poly
+  offset = 0
+  shape = mcircle
+  xy = {
+    0, 0
+  }
+}
+object = {
+  layer = 55
+  offset = -0.1
+  shape = circle
+  circlepoints = 32
+ } 
+ 
+$END
+
+$JJ
+name = jj1shuntground
+parameters = {
+  icrit        // Specified in Ampere (real value)
+  Rs           // Shunt resistance in ohms
+}
+
+rslayer = 52
+jjvialayer = 55
+rsvialayer = 56
+counterbasevialayer = 54
+IsGrounded = true
+LowerGroundLayer = 40
+LowerGroundViaLayer = 41
+
+base = {
+  layer = 50
+  offset = 0.5
+  shape = rectangle
+  circlepoints = 10
+ }
+counter = {
+  layer = 60
+  offset = 1.0
+  shape = rectangle
+  circlepoints = 8
+ }
+jj = {
+  layer = 51
+*    Object types:  mcircle (Manhattan circle), circle, poly
+  offset = 0
+  shape = mcircle
+  xy = {
+    0, 0
+  }
+}
+object = {
+  layer = 55
+  offset = -0.1
+  shape = circle
+  circlepoints = 32
+ } 
+ 
+$END
+
+$EOF

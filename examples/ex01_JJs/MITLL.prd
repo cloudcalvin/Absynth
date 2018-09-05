@@ -1,0 +1,260 @@
+* Absynth process description file
+* v1
+* CJF 30 Nov 2017: first implementation
+******************************************************************************
+$Parameters
+* Global parameters, where necessary
+* Units = REAL // Unit size in metres
+*------------------------------------
+Units             =  1e-6
+$End
+*************************************
+* LAYERS
+** Number is GDS layer number
+** Name is layer as applied in geometry input file
+
+*
+* L0  -  lowest layer (HKIL - CJF uses this as power layer for demo)
+$Layer
+Number      =     3
+Name        =     L0
+GridSize    =     0.025
+$End
+*
+* C0  -  isolation
+$Layer
+Number      =     4
+Name        =     C0
+GridSize    =     0.025
+$End
+*
+* M0  -  lowest conductor
+$Layer
+Number      =     1
+Name        =     M0
+GridSize    =     0.025
+$End
+*
+* I0  -  isolation
+$Layer
+Number      =     2
+Name        =     I0
+GridSize    =     0.025
+$End
+*
+* M1  -  conductor
+$Layer
+Number      =     10
+Name        =     M1
+GridSize    =     0.025
+$End
+*
+* I1  -  isolation
+$Layer
+Number      =     11
+Name        =     I1
+GridSize    =     0.025
+$End
+*
+* M2  -  conductor
+$Layer
+Number      =     20
+Name        =     M2
+GridSize    =     0.025
+$End
+*
+* I2  -  isolation
+$Layer
+Number      =     21
+Name        =     I2
+GridSize    =     0.025
+$End
+*
+* M3  -  conductor
+$Layer
+Number      =     30
+Name        =     M3
+GridSize    =     0.025
+$End
+*
+* I3  -  isolation
+$Layer
+Number      =     31
+Name        =     I3
+GridSize    =     0.025
+$End
+*
+* M4  -  lower ground plane
+$Layer
+Number      =     40
+Name        =     M4
+GridSize    =     0.025
+$End
+*
+* I4  -  first isolation
+$Layer
+Number      =     41
+Name        =     I4
+GridSize    =     0.025
+MinSize     =     0.8
+MaxSize     =     1.2
+MinSpace    = {
+  41        =     1.0  
+  51        =     1.4
+  54        =     1.0
+}
+Surround    = {
+  50        =     0.3
+}
+$End
+*
+* M5  -  conductor
+$Layer
+Number     =      50
+Name       =      M5
+GridSize   =      0.025
+MinSize    =      0.7
+MaxWidth   =      20
+MinSpace   = {
+  50       =      1.0  
+}
+Surround   = {
+  51       =      0.5
+  54       =      0.5
+}
+$End
+*
+* J5  -  JJ definition
+$Layer
+Number      =     51
+Name        =     J5
+Type        =     JJ
+JC          =     100e-6       // A/(units squared), thus 100uA/um2
+dc          =     0.25
+b           =     -0.02
+GridSize    =     0.005
+MinSize     =     0.7
+MaxSize     =     3.0
+MinSpace    =  {
+  51        =     1.1
+  54        =     0.7
+}
+Surround    = {
+  40        =     0.5
+  55        =     0.1
+}
+$End
+*
+* R5  -  shunt/bias resistor
+$Layer
+Number      =     52
+Name        =     R5
+SheetResistance = 2.0         // In Ohms/square
+GridSize    =     0.025
+MinSize     =     0.5
+MinSpace    =  {
+  51        =   0.4
+  52        =   0.5
+  54        =   0.5
+}
+Surround    = {
+  56        =     0.35
+}
+$End
+*
+* I5  -  second isolation
+$Layer
+Number      =     54
+Name        =     I5
+MinSize     =     0.7
+MaxSize     =     1.2
+MinSpace    =  {
+  54        =     0.7
+  52        =     0.5
+}
+Surround    = {
+  60        =     0.35
+}
+GridSize    =     0.025
+$End
+*
+* C5J  -  contact to JJ
+$Layer
+Number      =     55
+Name        =     C5J
+GridSize    =     0.010
+MinSpace    =  {
+  54        =     0.5
+}
+Surround    = {
+  51        =     0.1
+  60        =     0.35  
+}
+$End
+*
+* C5R  -  contact to resistor
+$Layer
+Number      =     56
+Name        =     C5R
+GridSize    =     0.010
+MinSize     =     0.7
+MinSpace    = {
+  54        =     0.5
+  56        =     0.7
+  }
+Surround    = {
+  52        =     0.2                // Special case: alternative resistor layout
+  60        =     0.35
+}
+$End
+*
+* M6  -  conductor
+$Layer
+Number     =     60
+Name       =     M6
+MinSize    =     0.5
+MaxWidth   =     20
+MinSpace   = {
+  60       =     0.7
+}
+Surround   = {
+  61       =     0.35
+}
+GridSize    =     0.025
+$End
+*
+* I6  -  third isolation
+$Layer
+Number      =     61
+Name        =     I6
+GridSize    =     0.025
+$End
+*
+* M7  -  upper ground plane
+$Layer
+Number     =     70
+Name       =     M7
+GridSize    =     0.025
+$End
+*
+* I7  -  via in chip passivation (overglass)
+$Layer
+Number      =     71
+Name        =     I7
+GridSize    =     0.025
+$End
+*
+* M8  -  Pads
+$Layer
+Number     =     80
+Name       =     M8
+GridSize    =     0.5
+$End
+*
+*
+* TERM
+$Layer
+Number     =     19
+Name       =     TERM
+$End
+*

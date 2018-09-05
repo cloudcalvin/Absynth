@@ -1,0 +1,40 @@
+* Absynth layout file
+* Describes layout of a series of Josephson junctions as example
+* v1
+* CJF 27 Jun 2018: 170 uA JJ with Bc = 1
+******************************************************************************
+*
+$Parameters
+* Global parameters, where necessary
+* Units = REAL // Unit size in metres
+*------------------------------------
+Units             =  1e-6
+ProcessFile       =  "MITLL.PRD"
+GDSOutFile        =  "jj170b1gnd.gds"
+StructName        =  "jj170b1gnd"
+Include           =  "devices.abs"
+$End
+***********************************
+  // Variable definitions - used for parameterization
+
+$VARIABLE
+  name = rshunt           //  Shunt resistance for 100 uA junction
+  value = 6.86
+$END
+
+  // Unshunted junctions
+
+$DEVICE
+  definition  =   jj1shuntground
+  parameters  = {
+  icrit = 170E-6
+  rs = %rshunt/1.7
+  }
+  xy={
+    0, 0
+  }
+  rotate = 0
+$END
+
+
+$EOF
