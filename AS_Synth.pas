@@ -1,5 +1,9 @@
 unit AS_Synth;
 
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 {
     Unit AS_Synth (for use with Absynth)
     Copyright (c) 2017-2018 Coenrad Fourie

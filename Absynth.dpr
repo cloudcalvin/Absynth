@@ -1,5 +1,9 @@
 program Absynth;
 
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 {$APPTYPE CONSOLE}
 
 {*******************************************************************************

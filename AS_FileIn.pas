@@ -1,5 +1,9 @@
 unit AS_FileIn;
 
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 {
     Unit AS_FileIn (for use with Absynth)
     Copyright (c) 2017-2018 Coenrad Fourie
