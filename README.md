@@ -16,6 +16,6 @@ lazbuild Absynth.lpi
 
 ### Test 
 ```
-cd Examples/
+cd examples/
 ../lib/Absynth -a jj250.abs
 ``` 
